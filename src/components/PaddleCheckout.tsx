@@ -24,7 +24,7 @@ export function PaddleCheckout({
 
   useEffect(() => {
     if (!clientId) {
-      console.error('Paddle Client ID is not configured');
+      console.warn('Paddle Client ID is not configured. Paddle checkout will be disabled.');
       return;
     }
 
@@ -56,6 +56,7 @@ export function PaddleCheckout({
         }
       } catch (error) {
         console.error('Failed to initialize Paddle:', error);
+        onError?.(new Error('Failed to initialize Paddle checkout'));
       }
     };
 
@@ -69,8 +70,17 @@ export function PaddleCheckout({
   }, [clientId, onSuccess, onError, onClose]);
 
   const handleCheckout = async () => {
+    if (!clientId) {
+      const error = new Error('Paddle is not configured. Please set up your Paddle Client ID.');
+      console.error(error.message);
+      onError?.(error);
+      return;
+    }
+
     if (!paddleRef.current) {
-      console.error('Paddle not initialized');
+      const error = new Error('Paddle not initialized. Please try again.');
+      console.error(error.message);
+      onError?.(error);
       return;
     }
 
@@ -87,12 +97,27 @@ export function PaddleCheckout({
           successUrl: `${window.location.origin}/dashboard?success=true`,
           closeOnSuccess: true,
         });
+      } else {
+        throw new Error('Paddle checkout is not available');
       }
     } catch (error) {
       console.error('Failed to open checkout:', error);
       onError?.(error);
     }
   };
+
+  // If Paddle is not configured, show a disabled button
+  if (!clientId) {
+    return (
+      <button
+        disabled
+        className={`inline-flex items-center justify-center rounded-md bg-muted px-4 py-2 text-sm font-medium text-muted-foreground cursor-not-allowed ${className}`}
+        title="Paddle is not configured. Please set up your Paddle Client ID."
+      >
+        {children} (Paddle not configured)
+      </button>
+    );
+  }
 
   return (
     <button
