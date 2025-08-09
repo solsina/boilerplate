@@ -45,10 +45,10 @@ export const PricingPlanList: Record<string, PricingPlan> = {
     id: PLAN_ID.PREMIUM,
     price: 79,
     interval: BILLING_INTERVAL.MONTH,
-    testPriceId: 'price_premium_test', // Use for testing
-    // FIXME: Update the price ID, you can create it after running `npm run stripe:setup-price`
-    devPriceId: 'price_1PNksvKOp3DEwzQlGOXO7YBK',
-    prodPriceId: '',
+    testPriceId: 'pri_premium_test', // Paddle test price ID
+    // FIXME: Update the price ID, you can create it in your Paddle dashboard
+    devPriceId: 'pri_premium_dev',
+    prodPriceId: 'pri_premium_prod',
     features: {
       teamMember: 5,
       website: 5,
@@ -60,10 +60,10 @@ export const PricingPlanList: Record<string, PricingPlan> = {
     id: PLAN_ID.ENTERPRISE,
     price: 199,
     interval: BILLING_INTERVAL.MONTH,
-    testPriceId: 'price_enterprise_test', // Use for testing
-    // FIXME: Update the price ID, you can create it after running `npm run stripe:setup-price`
-    devPriceId: 'price_1PNksvKOp3DEwzQli9IvXzgb',
-    prodPriceId: 'price_123',
+    testPriceId: 'pri_enterprise_test', // Paddle test price ID
+    // FIXME: Update the price ID, you can create it in your Paddle dashboard
+    devPriceId: 'pri_enterprise_dev',
+    prodPriceId: 'pri_enterprise_prod',
     features: {
       teamMember: 100,
       website: 100,
