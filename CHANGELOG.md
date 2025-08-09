@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/solsina/boilerplate/compare/v1.0.0...v1.0.1) (2025-08-09)
+
+
+### Bug Fixes
+
+* Make Paddle environment variables optional for deployment - Update Env.ts to make Paddle variables optional - Improve PaddleCheckout error handling - Add Vercel configuration file - Add deployment guide ([90ddef5](https://github.com/solsina/boilerplate/commit/90ddef515397111dd0832131fcace859995a34a0))
+
 # 1.0.0 (2025-08-09)
 
 
