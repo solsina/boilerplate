@@ -31,8 +31,8 @@ export function PaddleCheckout({
     // Initialize Paddle - using dynamic import to avoid SSR issues
     const initPaddle = async () => {
       try {
-        const { Paddle } = await import('@paddle/paddle-js');
-        paddleRef.current = new Paddle({
+        const paddleModule = await import('@paddle/paddle-js');
+        paddleRef.current = new paddleModule.default({
           clientId: clientId,
           environment: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox',
         });
